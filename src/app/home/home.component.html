@@ -1,0 +1,19 @@
+<div class="content">
+  <div  *ngFor="let job of pagerJobs">
+    <div class="row">
+  <div class="col-12 align-self-center mt-5">
+      
+   
+      <h4><a [routerLink]="['/job', job._id]"></a>Title:{{job.title}}</h4>
+   
+      <p class="card-text">{{job.desc}}</p>
+      <a class="btn btn-primary">Apply</a>  <a class="btn btn-primary" (click)='delete()'>Delete</a>
+ 
+    </div>
+  </div>
+  </div>
+<app-pager [page]="currentPage"
+  [totalPages]="totalPages"
+  (changePage)="paginate($event)"
+></app-pager>
+</div>

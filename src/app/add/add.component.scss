@@ -1,0 +1,54 @@
+
+.example-form {
+   
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 60%;
+    border-color:red;
+  }
+
+
+  ::ng-deep .mat-form-field-underline .mat-form-field-ripple{
+    
+      background-color:red;
+    }
+    
+    ::ng-deep .mat-form-field-underline{
+    
+      background-color:red;
+    }
+
+    ::ng-deep .mat-form-field label{
+      color:black;
+    }
+
+
+    .error input{
+     border:1px solid red;
+     background-color:pink;
+
+    }
+
+    .error textarea{
+      border:1px solid red;
+      background-color:pink;
+ 
+     }
+
+    .error ::-webkit-input-placeholder {
+      color:red;
+    }
+
+    .error ::-moz-placeholder{
+      color:red;
+
+    }
+
+    .error :-moz-placeholder{
+      color:red;
+    }
+    .error :-ms-input-placeholder{
+      color:red;
+    }

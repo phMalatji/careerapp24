@@ -1,0 +1,41 @@
+.full-width{
+    width: 100%;
+}
+
+.fContainer{
+    display: flex; /* or inline-flex */
+flex-direction:row;
+
+}
+
+.fItem{
+
+}
+.fInput{
+    flex-grow:1;
+}
+.contact-icon{
+  // margin-left:20px;
+    width:100px;
+    display:flex;
+    justify-content: center; /* center items horizontally, in this case */
+    align-items: center; 
+   // border:1px solid red;
+}
+
+.contact-icons{
+  //  margin-left:20px;
+     width:100px;
+
+ }
+.profileButtons{
+    display:flex;
+    justify-content: space-between; /* center items horizontally, in this case */
+    align-items: right; 
+}
+ .flexCont{
+     display:flex;
+    align-items: center;
+    justify-content: center;
+ }
+ 

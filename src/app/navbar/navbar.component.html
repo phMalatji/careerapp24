@@ -1,0 +1,51 @@
+<mat-toolbar>
+
+  <h2>
+    <a routerLink="/search"> Careers Un</a>
+  </h2>
+
+  <div fxFlex fxLayoutAlign="end start">
+       
+          <div *ngIf="!userService.isLogged()">
+              <button mat-button (click)="login()">Login</button>
+          </div>
+          <div *ngIf="userService.isLogged()">
+              <button mat-button (click)="logout()">Logout</button>
+          </div>
+     
+  </div>
+  <!-- <div fxFlex="80" fxShow.xs="false" fxShow.gt-xs="true"> -->
+
+
+
+
+
+</mat-toolbar>
+
+<div>
+
+
+
+  <nav mat-tab-nav-bar>
+   
+
+    <span *ngIf="userService.isLogged()">
+        <a mat-tab-link routerLink="/home">
+          Jobs 
+        </a>
+      <a mat-tab-link routerLink="/profile">
+        My Profile
+      </a>
+      <a mat-tab-link routerLink="/add">
+        Add
+      </a>
+
+    </span>
+
+   
+
+
+  </nav>
+
+</div>
+

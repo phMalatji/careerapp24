@@ -1,0 +1,26 @@
+.nav-link a:link, a:visited{
+    color:#666;
+}
+
+#navbarSupportedContent{
+z-index:999;
+
+}
+
+.mobMenu{
+    margin-top:40px;
+}
+
+
+::ng-deep .mat-toolbar{
+    
+      background-color:white;
+    }
+    
+    ::ng-deep .mat-toolbar , a:link{
+
+color:black;
+    }
+
+
+ 

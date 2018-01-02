@@ -1,0 +1,36 @@
+.bounds {
+    background-color:whiteshadow;
+    height :800px;
+  }
+  
+  .sec1 {
+  
+  }
+  
+  .sec2 {
+   
+    
+  }
+  
+  .sec3 {
+  
+  }
+  
+  .sec1, .sec2, .sec3 {
+
+    text-align:center
+  }
+  
+ .content{
+   position: relative;
+   margin-left:20px;
+ }
+
+  .jobCard{
+   border:1px solid #333;
+   padding:10px;
+  }
+
+  .jobItem{
+    flex-grow:1;
+  }

@@ -1,0 +1,65 @@
+<form class="profile-form" name="profileForm" [formGroup]="profileForm" autocomplete="off" novalidate>
+  <div class="container mt-3">
+
+    <div class="fContainer">
+      <div class="fItem contact-icon">
+        <i class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
+
+      </div>
+      <div class="fInput">
+        <mat-form-field class="full-width teal-theme">
+          <input matInput name="userName" formControlName="userName" placeholder="Name" value="{{theUser.name}}">
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- <div class="col-10">
+           
+            </div> -->
+
+    <!-- <img *ngIf="(contact.imageUrl)" [src]="contact.imageUrl" alt="conacti mage">
+        <input type="file" *ngIf="!isNewContact" (change)="uploadFile($event)"> -->
+
+    <div class="fContainer">
+      <div class="contact-icon">
+        <i class="fa fa-envelope fa" aria-hidden="true"></i>
+      </div>
+      <div class="fInput">
+        <mat-form-field class="full-width teal-theme">
+          <input matInput name="userEmail" formControlName="userEmail" value="{{theUser.email}}" placeholder="Email">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="fContainer">
+      <div class="contact-icon">
+
+
+        <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+      </div>
+      <div class="fInput">
+        <mat-form-field class="full-width teal-theme">
+          <input matInput name="userCell" type="number" formControlName="userCell" placeholder="Cellphone">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="fContainer">
+      <div class="contact-icon">
+
+        <i class="fa fa-id-card" aria-hidden="true"></i>
+      </div>
+      <div class="fInput">
+        <mat-form-field class="full-width teal-theme">
+          <input matInput name="userQuality" formControlName="userQuality" placeholder="Qualifications">
+        </mat-form-field>
+      </div>
+    </div>
+
+ 
+        <div class="profileButtons">
+                <button mat-button>Cancel</button> 
+                <button mat-button>Save</button>
+        </div>
+
+
+  </div>
+</form>

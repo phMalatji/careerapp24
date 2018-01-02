@@ -1,0 +1,36 @@
+<form class="login-form" name="logForm" [formGroup]="logForm" (ngSubmit)="login()" autocomplete="off" novalidate>
+
+<div class="teal-theme text-center">
+
+    <div [ngClass]="{'has-error': uEmail.touched}">
+        <mat-form-field>
+            <input matInput value="" placeholder="Email address" formControlName="email">
+          </mat-form-field> 
+    </div>
+      
+        
+        <mat-form-field>
+          <input matInput value="" placeholder="Password" formControlName="password">
+        </mat-form-field>
+ <br />
+</div>
+
+<div class="row text-center">
+  <div class="col-12">
+      <!-- <span class="help-block" *ngIf="(logForm.get('uEmail').touched || 
+      logForm.get('uEmail').dirty) && 
+      logForm.get('uEmail').errors"> -->
+          
+    <span id="feedback"><small>
+
+    </small>
+        </span>
+        <br />
+        <br />
+
+        <button class="btn-primary" [disabled]="!logForm.valid" mat-button (click)="login()">Login</button>
+
+  </div>
+</div>
+ 
+</form>

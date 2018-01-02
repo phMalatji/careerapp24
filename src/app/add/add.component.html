@@ -1,0 +1,51 @@
+<div class="container">
+        <form [formGroup]="addForm"  (ngSubmit)="postJob(addForm.value)" autocomplete="off" novalidate>
+            
+            <div class="form-group" [ngClass]="{'error':validJob() }">
+                <label for="jobTitle">Job Title</label>
+                <input type="text" formControlName="jobTitle" class="form-control" id="jobTitle" aria-describedby="jobTitle" placeholder="e.g Software Developer">
+                <small id="emailHelp" *ngIf="addForm.controls.jobTitle.invalid && addForm.controls.jobTitle.touched" class="form-text text-muted alert alert-danger">
+                    A Job title is required</small>
+            </div>
+           
+            <div class="form-group" [ngClass]="{'error':validDesc() }">
+                <label for="jobDesc">Job Description</label>
+                <textarea formControlName="jobDesc" class="form-control" id="jobDesc" rows="3"></textarea>
+                <small id="emailHelp" class="form-text text-muted">Limit : 240 Characters</small>
+                <small id="emailHelp" *ngIf="validDesc()" class="form-text text-muted">Jod description is required.</small>
+                <small id="emailHelp" *ngIf="validDescLength()" class="form-text text-muted">Jod description is too long.</small>
+            </div>
+            <select formControlName="jobIndustry" class="form-control form-control-lg">
+                <option value="default">Select Industry</option>
+                <option value="finance">Finance</option>
+                <option value="engineering">Engineering</option>
+    
+            </select>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <!--         
+            <div class="col-12 text-center">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Job Title"
+                    name="jobTitle" [(ngModel)]="jobTitle"
+                    >
+                    <mat-error *ngIf="">
+                            Please enter a valid email address
+                          </mat-error>
+                  </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Job Description"
+                  name="jobDesc" [(ngModel)]="jobDesc"
+                  ></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                    <button mat-button class="searchBtn" (click)="addPost()">Add Post</button>
+           </div> -->
