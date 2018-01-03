@@ -8,15 +8,19 @@
   .search-full-width {
     width: 60%;
   }
-.mt100{
-  margin-top:100px;
+.mb100{
+top:-100px;
 }
   .search-container{
   //  margin-top:100px;
 }
 .choose-div{
   position: relative;
-  top:-150px;
+ top:-80px;
+ @media only screen and (max-width: 500px) {
+  position: relative;
+ top:-180px;
+ }
 }
 .country-div{
 
@@ -41,11 +45,18 @@
 }
 .search{
   background:url('./../../assets/images/header-bg.png');
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:top;
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+  background-position: top center;
 }
-
+@media only screen and (max-width: 500px) {
+  .search{
+  background:url('./../../assets/images/header-bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 50%;
+  background-position: top center;
+  }
+}
 ::ng-deep .mat-menu-item {
  background-color:white;
  color:#666;
