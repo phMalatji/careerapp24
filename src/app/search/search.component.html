@@ -1,3 +1,4 @@
+<a (click)="toast()">Toast Me</a>
 <div class="search teal-theme">
     <form class="search-form" name="searchForm" [formGroup]="searchForm" (ngSubmit)="directSearch(searchForm.value)" autocomplete="off"
         novalidate>
@@ -28,7 +29,7 @@
     </form>
 </div>
 
-<div class="container">
+<div class="container mt100">
     <div class="content choose-div" fxLayout="row" fxLayout.xs="column" fxFlexFill>
 
         <div fxFlex="50" fxFlexOrder.xs="1" fxLayoutAlign="center" class="country-div">
@@ -65,7 +66,6 @@
         </div>
     </div>
 
-   <footer></footer>
 </div>
 
 <app-a-modal>

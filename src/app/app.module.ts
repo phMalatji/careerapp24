@@ -16,7 +16,7 @@ import { AngularFirestoreModule,  } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import { AddComponent } from './add/add.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { ToastrModule } from 'ngx-toastr';
 import { AuthguardGuard } from './auth/authguard.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { JobsService } from './shared/jobs.service';
@@ -33,6 +33,7 @@ import { LoginComponent } from './login/login.component';
 import { PagerService } from './shared/pager.service';
 import { PagerComponent } from './pager/pager.component';
 import { JobComponent } from './job/job.component';
+import { SignupComponent } from './signup/signup.component';
 declare let jQuery: Object;
 
 @NgModule({
@@ -52,7 +53,8 @@ declare let jQuery: Object;
     SectorComponent,
     LoginComponent,
     PagerComponent,
-    JobComponent
+    JobComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,8 @@ declare let jQuery: Object;
     HttpModule,
     HttpClientModule,
     RoutingRoutingModule,
+
+   ToastrModule.forRoot(),
   //  AngularFireAuthModule,
     //AngularFireModule.initializeApp(environment.firebase),
    // AngularFirestoreModule.enablePersistence(),

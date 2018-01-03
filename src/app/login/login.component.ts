@@ -44,12 +44,16 @@ page:string="login";
     },
     err => {
       console.log('info error bro');
+      this.handleError(err);
       var feed = document.getElementById('feedback').innerHTML='<small>Insufficient Credentials</small>';
     }
    );
 
    
      
+  }
+  handleError(err){
+    console.log(err)
   }
 
 }

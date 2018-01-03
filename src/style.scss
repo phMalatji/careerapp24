@@ -10,8 +10,17 @@
 
 
 @import 'theme.scss';
-
+@import "~ngx-toastr/toastr";
 
 .teal-theme{
     @include angular-material-theme($theme);
+}
+
+html, body {
+    margin: 0; width: 100%;
+height: 100%;
+}
+
+.container{
+    min-height: 100%;
 }

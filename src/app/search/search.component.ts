@@ -35,7 +35,7 @@ import { Router , Routes} from '@angular/router';
 import { AModalComponent } from '../shared/a-modal/a-modal.component';
 import { AuthServiceService } from '../auth/auth-service.service';
 import { PROVINCES , SECTORS} from '../shared/constants';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -64,6 +64,8 @@ export class SearchComponent implements OnInit {
 
   constructor(private jobServe: JobsService,
      private modalService: NgbModal,
+     
+     private tostr: ToastrService,     
  //     public authService: AuthServiceService,
     private router:Router) {
       this.jobs=this.jobServe.getJobs();
@@ -74,10 +76,12 @@ export class SearchComponent implements OnInit {
       });
 
   }
-
+toast(){
+    this.tostr.success('Submitted Succcessfully', 'Employee Register');
+    console.log('clicked')
+}
   ngOnInit() {
-
-
+    
      // console.log(this.authService.isAuthenticated())
 
       // this.posts = this.jobsCollectionRef.snapshotChanges()
