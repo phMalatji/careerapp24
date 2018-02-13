@@ -8,7 +8,7 @@
       </div>
       <div class="fInput">
         <mat-form-field class="full-width teal-theme">
-          <input matInput name="userName" formControlName="userName" placeholder="Name" value="{{theUser.name}}">
+          <input matInput name="userName" formControlName="userName" placeholder="Name" value="{{theUser?.name}}">
         </mat-form-field>
       </div>
     </div>
@@ -25,7 +25,7 @@
       </div>
       <div class="fInput">
         <mat-form-field class="full-width teal-theme">
-          <input matInput name="userEmail" formControlName="userEmail" value="{{theUser.email}}" placeholder="Email">
+          <input matInput name="userEmail" formControlName="userEmail" value="{{theUser?.email}}" placeholder="Email">
         </mat-form-field>
       </div>
     </div>
@@ -49,7 +49,7 @@
       </div>
       <div class="fInput">
         <mat-form-field class="full-width teal-theme">
-          <input matInput name="userQuality" formControlName="userQuality" placeholder="Qualifications">
+          <input matInput name="userQuality" formControlName="userQuality" placeholder="Qualification(s)">
         </mat-form-field>
       </div>
     </div>
@@ -57,7 +57,7 @@
  
         <div class="profileButtons">
                 <button mat-button>Cancel</button> 
-                <button mat-button>Save</button>
+                <button mat-button (click)="updateProfile()">Save</button>
         </div>
 
 

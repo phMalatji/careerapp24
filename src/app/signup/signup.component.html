@@ -1,3 +1,46 @@
-<p>
-  signup works!
-</p>
+<div class="container">
+
+    <div class="row">
+        <h6> Fill in your details and our employer's will get through to you.</h6>
+    </div>
+
+
+      <mat-card class="signup-card">
+            <form class="signup-form" name="signupForm" [formGroup]="signupForm" (ngSubmit)="signup()" autocomplete="off" novalidate>
+
+
+  
+                <div class="teal-theme">
+                        <div class="full-width">
+           
+                        <div [ngClass]="{'has-error': uEmail.touched}">
+                                <mat-form-field class="full-width">
+                                    <input matInput value="" placeholder="Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" formControlName="email">
+                                </mat-form-field>
+                                </div>
+                        <div [ngClass]="{'has-error': uPassword.touched}">
+                                        <mat-form-field class="full-width">
+                                            <input matInput type="password" value="" minlength="4" maxlength="16" placeholder="Password" formControlName="password">
+                                        </mat-form-field>
+                            </div>
+                            <div [ngClass]="{'has-error': uQuali.touched}">
+                                    <mat-form-field class="full-width">
+                                        <input matInput value="" placeholder="Qualification" formControlName="qualification">
+                                    </mat-form-field>
+                             
+                                </div>
+                              
+                               
+                </div>
+                <div class="text-center">
+                        <button mat-button [disabled]="!signupForm.valid">Register</button>
+                </div>
+                </div>
+
+            </form>
+
+        </mat-card>
+
+
+
+</div>

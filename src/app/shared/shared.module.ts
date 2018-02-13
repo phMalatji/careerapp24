@@ -13,7 +13,10 @@ import {
    MatMenuModule,
    MatTabsModule,
    MatCardModule,
-   MatProgressSpinnerModule
+   MatSelectModule,
+   MatProgressSpinnerModule,
+   MatDatepickerModule,
+   MatNativeDateModule
  } from '@angular/material';
 
 
@@ -23,12 +26,12 @@ import {
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule, ReactiveFormsModule,
-    MatButtonModule, MatCheckboxModule,MatSidenavModule,MatInputModule,
-    MatToolbarModule,MatMenuModule,MatTabsModule,MatCardModule,MatProgressSpinnerModule
+    MatButtonModule, MatCheckboxModule,MatSidenavModule,MatInputModule,MatSelectModule,MatDatepickerModule,
+    MatToolbarModule,MatMenuModule,MatTabsModule,MatCardModule,MatProgressSpinnerModule,MatNativeDateModule
   ],
   exports:[
     BrowserAnimationsModule,
-    FlexLayoutModule,  FormsModule, ReactiveFormsModule,
+    FlexLayoutModule,  FormsModule, ReactiveFormsModule,MatSelectModule,MatDatepickerModule,MatNativeDateModule,
     MatButtonModule, MatCheckboxModule, MatSidenavModule,MatInputModule,MatToolbarModule,
     MatMenuModule,MatTabsModule,MatCardModule,MatProgressSpinnerModule
   ],

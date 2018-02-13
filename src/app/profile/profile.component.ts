@@ -6,10 +6,9 @@ import { Contact, IUser } from './../shared/AppInterfaces';
 
 import { FormGroup, FormControl } from '@angular/forms';
 
-
 import { UsersService } from '../shared/users.service';
+import { Router,ActivatedRoute } from '@angular/router';
 import {
-
   SharedModule
 } from './../shared/shared.module';
 
@@ -21,6 +20,7 @@ import {
 export class ProfileComponent implements OnInit {
   contact = {} as Contact;
   theUser:IUser;
+uId:string;
 
   contactKey: string;
   profileForm: FormGroup;
@@ -29,8 +29,8 @@ export class ProfileComponent implements OnInit {
   userCell: FormControl;
   userQuality: FormControl;
 
-  constructor(userServe: UsersService) {
-    this.theUser = userServe.getUser();
+  constructor(public userService:UsersService, private router:Router, private activeRoute:ActivatedRoute) {
+   // this.theU_ser = userServe.getUser();
     this.userName = new FormControl("");
     this.userEmail = new FormControl("");
 
@@ -45,11 +45,23 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+  this.uId=this.activeRoute.snapshot.params['uId'];
 
+  //console.log(this.userService.getUser());
+  this.userService.getUser().subscribe(
+    data => {
+      this.theUser=data;
+      //console.log(data);
+    },
+    err => {
+      console.log(err)
+    }
+  );
+ 
   }
 
   updateProfile() {
-    console.log("oi her")
+    
   }
   uploadFile(event: any) {
     const file = event.srcElement.files[0];

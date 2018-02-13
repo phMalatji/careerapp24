@@ -1,19 +1,36 @@
 <div class="content">
+    <form class="search-form" name="searchForm" [formGroup]="searchForm" autocomplete="off" novalidate>
+    <div class="input-group">
+       
+        <input type="text" formControlName="searchTxtField" class="form-control search-control" (keyup)="recallJobs()" id="searchTxt">
+        <span class="input-group-btn">
+            <button class="btn btn-success" type="button">Search</button>
+       </span>
+      </div>
+      </form>
   <div  *ngFor="let job of pagerJobs">
     <div class="row">
-  <div class="col-12 align-self-center mt-5">
+  <div class="col-12 mt-5">
       
    
-      <h4><a [routerLink]="['/job', job._id]"></a>Title:{{job.title}}</h4>
+    <a [routerLink]="['/job', job._id]"><span class="inline-block"> 
+      <h4>
+        Title:{{job.title}}</h4>
+    </span></a>
    
       <p class="card-text">{{job.desc}}</p>
-      <a class="btn btn-primary">Apply</a>  <a class="btn btn-primary" (click)='delete()'>Delete</a>
- 
+    
+  
     </div>
   </div>
   </div>
-<app-pager [page]="currentPage"
-  [totalPages]="totalPages"
-  (changePage)="paginate($event)"
-></app-pager>
+
+  <div class="text-center">
+      <app-pager [page]="currentPage"
+      [totalPages]="totalPages"
+      (changePage)="paginate($event)"
+    ></app-pager>
+  </div>
+    
+ 
 </div>

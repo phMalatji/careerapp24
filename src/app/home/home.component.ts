@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map'
 import { PagerService } from '../shared/pager.service';
 import { ActivatedRoute } from '@angular/router';
 import { preserveWhitespacesDefault } from '@angular/compiler/src/config';
+import { FormControl, FormGroup } from '@angular/forms';
 
 const URL = 'http://localhost:8000/api/books';
 
@@ -22,14 +23,17 @@ const URL = 'http://localhost:8000/api/books';
 })
 export class HomeComponent implements OnInit {
   startIndex: number=0;
- jobs: any[];
+ jobs: IJob[];
   pagerJobs: any[];
   currentPage: number;
   pageSize: number = 4;
   lastSize:number=4;
   pageLimit = 2;
   results = '';
-totalPages:number=1;
+  totalPages:number=1;
+  searchTxtField:FormControl;
+  searchForm:FormGroup;
+
   // pager object
   pager: any = {};
 
@@ -42,8 +46,11 @@ totalPages:number=1;
     private _http: Http,
     private pagerService: PagerService,
     private route: ActivatedRoute) {
+      this.searchTxtField = new FormControl("");
+      this.searchForm = new FormGroup({
+        searchTxtField: this.searchTxtField
 
-
+      });
     this.currentPage = this.route.snapshot.params['page'];
     if (!this.currentPage) {
       this.currentPage = 1;
@@ -59,7 +66,23 @@ totalPages:number=1;
 
     //  console.log(this.books.length)
   }
+recallJobs(){
+  //console.log(this.searchTxtField.value);
 
+  this.jobServe.search(this.searchTxtField.value).subscribe(
+    data => {
+      this.jobs=data;
+      this.setPage(this.currentPage);
+    
+      if(data==null){
+        console.log('no jobs bro')
+      }
+    },
+    err => {
+    
+    }
+  );
+}
   ngOnInit() {
 
 
@@ -86,11 +109,11 @@ totalPages:number=1;
 
 paginate(p:any){
  if (p.act=="next"){
-   console.log('atleast' +this.lastSize)
+  // console.log('atleast' +this.lastSize)
   this.startIndex=this.startIndex+4;
   
   this.lastSize=this.lastSize+4;
-  console.log('last' +this.lastSize)
+ // console.log('last' +this.lastSize)
  }
  else if(p.act=="prev"){
   this.startIndex =this.startIndex - 4;
@@ -102,7 +125,7 @@ paginate(p:any){
 
   });
 
- console.log(this.startIndex , this.lastSize)
+// console.log(this.startIndex , this.lastSize)
  this.pagerJobs.length=0;
  this.pagerJobs = this.jobs.slice(this.startIndex, this.lastSize);
 //s  console.log(this.pagerJobs)
@@ -110,14 +133,14 @@ paginate(p:any){
 }
   setPage(page: number) {
     //this.pagerJobs = this.jobs.slice(0,4);
-    console.log(page)
+   // console.log(page)
    
     if (page == 1) {
       this.pagerJobs = this.jobs.slice(0, this.pageSize);
       //console.log(this.pagerJobs)
     }
-console.log(this.pagerJobs)
-    console.log(this.jobs.length);
+//console.log(this.pagerJobs)
+  //  console.log(this.jobs.length);
     // get pager object from service
     // this.pager = this.pagerService.getPager(this.jobs.length, page);
 

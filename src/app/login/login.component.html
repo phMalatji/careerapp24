@@ -1,42 +1,58 @@
 <div class="container" style="height:100vh">
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="center"  fxFlexFill>
 
-  <form class="login-form" name="logForm" [formGroup]="logForm" (ngSubmit)="login()" autocomplete="off" novalidate>
+    <div fxFlex="100" fxFlexOrder.xs="1" fxLayoutAlign="center">
+        <div>
+            <mat-card class="login-card">
+                <form class="login-form" name="logForm" [formGroup]="logForm" (ngSubmit)="login()" autocomplete="off" novalidate>
+          
+                    <div class="teal-theme text-center">
+                
+                      <div [ngClass]="{'has-error': uEmail.touched}">
+                        <mat-form-field>
+                          <input matInput value="" placeholder="Email address" formControlName="email">
+                        </mat-form-field>
+                      </div>
+                
+                
+                      <mat-form-field>
+                        <input matInput value="" placeholder="Password" formControlName="password">
+                      </mat-form-field>
+                      <br />
+                    </div>
+                
+                    <div class="row text-center">
+                      <div class="col-12">
+                        <!-- <span class="help-block" *ngIf="(logForm.get('uEmail').touched || 
+                      logForm.get('uEmail').dirty) && 
+                      logForm.get('uEmail').errors"> -->
+                
+                        <span id="feedback">
+                          <small>
+                
+                          </small>
+                        </span>
+                        <br />
+                        <br />
+                
+                        <button class="btn-primary" [disabled]="!logForm.valid" mat-button>Login</button>
+                          <br /> <br />
 
-    <div class="teal-theme text-center">
+                         <span>Do you need an account? </span> <br /><br />
 
-      <div [ngClass]="{'has-error': uEmail.touched}">
-        <mat-form-field>
-          <input matInput value="" placeholder="Email address" formControlName="email">
-        </mat-form-field>
-      </div>
+                         <a class="blueTxt" [routerLink]="['/signup']"> Sign up as Employee </a> | <a class="greenTxt" [routerLink]="['/signup','employer']"> Sign up as Employer</a>
+                      </div>
+                    </div>
+                
+                  </form>
+                
+                
+            </mat-card>
+        </div>
 
-
-      <mat-form-field>
-        <input matInput value="" placeholder="Password" formControlName="password">
-      </mat-form-field>
-      <br />
+    </div>
     </div>
 
-    <div class="row text-center">
-      <div class="col-12">
-        <!-- <span class="help-block" *ngIf="(logForm.get('uEmail').touched || 
-      logForm.get('uEmail').dirty) && 
-      logForm.get('uEmail').errors"> -->
-
-        <span id="feedback">
-          <small>
-
-          </small>
-        </span>
-        <br />
-        <br />
-
-        <button class="btn-primary" [disabled]="!logForm.valid" mat-button (click)="login()">Login</button>
-
-      </div>
-    </div>
-
-  </form>
-
-
+  
+  
 </div>

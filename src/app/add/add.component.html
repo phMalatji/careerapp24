@@ -1,27 +1,69 @@
 <div class="container">
-        <form [formGroup]="addForm"  (ngSubmit)="postJob(addForm.value)" autocomplete="off" novalidate>
+        <form [formGroup]="addForm"  (ngSubmit)="postJob()" autocomplete="off" novalidate>
             
-            <div class="form-group" [ngClass]="{'error':validJob() }">
+            <div class="form-group">
                 <label for="jobTitle">Job Title</label>
-                <input type="text" formControlName="jobTitle" class="form-control" id="jobTitle" aria-describedby="jobTitle" placeholder="e.g Software Developer">
-                <small id="emailHelp" *ngIf="addForm.controls.jobTitle.invalid && addForm.controls.jobTitle.touched" class="form-text text-muted alert alert-danger">
-                    A Job title is required</small>
+                <input type="text" maxlength="40" formControlName="jobTitle" class="form-control" id="jobTitle" aria-describedby="jobTitle" placeholder="e.g Software Developer" required>
+                <!-- <small id="emailHelp" *ngIf="addForm.controls.jobTitle.invalid && addForm.controls.jobTitle.touched" class="form-text text-muted alert alert-danger">
+                    A Job title is required</small> -->
             </div>
+            <div class="form-group">
+                    <label for="jobCompany">Company</label>
+                    <input type="text" maxlength="40" formControlName="jobCompany" class="form-control" id="jobCompany" aria-describedby="jobCompany" required>
+               </div>
+               
            
             <div class="form-group" [ngClass]="{'error':validDesc() }">
                 <label for="jobDesc">Job Description</label>
-                <textarea formControlName="jobDesc" class="form-control" id="jobDesc" rows="3"></textarea>
-                <small id="emailHelp" class="form-text text-muted">Limit : 240 Characters</small>
+                <textarea formControlName="jobDesc" (keyup)="countWords($event)" maxlength="240" class="form-control" id="jobDesc" rows="3"></textarea>
+                <small id="emailHelp" class="form-text text-muted">Limit : {{charsLeft}} Characters</small>
                 <small id="emailHelp" *ngIf="validDesc()" class="form-text text-muted">Jod description is required.</small>
-                <small id="emailHelp" *ngIf="validDescLength()" class="form-text text-muted">Jod description is too long.</small>
+                <small id="emailHelp" *ngIf="!validDescLength()" class="form-text text-muted">Jod description is too long.</small>
             </div>
-            <select formControlName="jobIndustry" class="form-control form-control-lg">
-                <option value="default">Select Industry</option>
-                <option value="finance">Finance</option>
-                <option value="engineering">Engineering</option>
+            <div class="form-group">
+                    <label for="jobRemun">Estimated Earnings </label>
+                   <input currencyMask maxlength="20"
+                    formControlName="jobRemun" [options]="{ prefix: 'R', thousands: ' ', decimal: ',' }"
+                    class="form-control" id="jobRemun" aria-describedby="jobRemun" >
+                 
+
+                </div>
+                <div class="form-group">
+                    
+                        <mat-form-field>
+                                <input matInput formControlName="jobClose" [matDatepicker]="picker" placeholder="Closing Date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
     
-            </select>
-            <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="form-group teal-theme">
+                            <mat-form-field>
+                                    <mat-select placeholder="Choose Province" [(value)]="prov">
+                                            <div *ngFor="let prov of provinces">
+                                                <mat-option value="{{prov}}">
+                                                        {{prov}}
+                                                </mat-option>
+                                   
+                                       </div>
+                                    </mat-select>
+                                  </mat-form-field>
+                       </div>
+            <div class="form-group teal-theme">
+                <mat-form-field>
+                    <mat-select placeholder="Choose Industry" [(value)]="industrySelected">
+                      <mat-option value="Finance">
+                       Finance
+                      </mat-option>
+                      <mat-option value="Engineering">
+                        Engineering
+                       </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+
+            
+            <button type="submit" class="btn btn-primary" [disabled]="!industrySelected || (addForm.valid==false)">Submit</button>
         </form>
     </div>
     <!--         

@@ -1,16 +1,23 @@
 .footerInfo{
     padding:16px;
-    margin-left:16px;
+    //margin-left:16px;
   }
   
   .footerFooter{
     padding:16px;
-    margin-right:16px;
+   // margin-right:16px;
   
   }
   .footer{
     background-color:#f9f9f9;
     position: relative;
-  
+height:auto;
   }
-  
+  .last-foot{
+    margin-top:40px;
+    margin-left:80px;
+  }
+
+  .left-footer{
+    margin-left:20px;
+  }

@@ -1,3 +1,16 @@
-<p>
-  job works!
-</p>
+<div class="container">
+    <div class="mt-2">
+
+
+        <h4>{{job?.title}}</h4>
+        <p>{{job?.desc}}</p> 
+        <br />
+        <b>Closing Date : </b>
+        <br />
+        <b>Company : </b>
+        <br />
+
+        <a class="btn btn-warning" (click)="deleteJob(job._id)">Delete Job</a>
+        </div>
+        
+</div>

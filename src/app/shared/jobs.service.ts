@@ -3,66 +3,87 @@ import { IJob, Skill } from './AppInterfaces';
 //import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 import { Observable } from 'rxjs/Rx';
-import { Http, Response } from '@angular/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/catch';
 
-const jobs = ["Software Dev", "CEO"];
+import { AuthHttp } from 'angular2-jwt';
+import { tokenNotExpired,JwtHelper } from 'angular2-jwt';
+import { error } from 'util';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+};
 
 @Injectable()
 export class JobsService implements OnInit {
   provJobs: Observable<IJob[]>;
   //jobsCollectionRef: AngularFirestoreCollection<IJob>;
-  jobs:any[];
+  jobs: any[];
   posts: Observable<any>;
   sp: Observable<IJob[]>;
   //jobDoc: AngularFirestoreDocument<IJob>;
   post: Observable<IJob>;
-  totalJobs:number;
-  //booksUrl: string = 'http://localhost:8000/api/books';
-  jobsUrl: string = 'http://localhost:8000/api/jobs';
+  totalJobs: number;
 
-  constructor(private _http: Http) {
+  constructor(private _http: HttpClient) {
     this.getJobs().subscribe(
-      data =>{
-        this.jobs=data;
+      data => {
+        this.jobs = data;
         this.setTotal();
       }
     )
-   // this.jobsCollectionRef = this.afs.collection<IJob>('jobss');
-   // this.jobs$ = this.jobsCollectionRef.valueChanges();
+    // this.jobsCollectionRef = this.afs.collection<IJob>('jobss');
+    // this.jobs$ = this.jobsCollectionRef.valueChanges();
 
   }
-  setTotal(){
-    this.totalJobs=this.jobs.length;
+  setTotal() {
+    this.totalJobs = this.jobs.length;
   }
- getTotalJobs(){
-  
+  getTotalJobs() {
 
-console.log(this.totalJobs)
 
- }
-getTots(){
-  this.getJobs().subscribe(
-    data => {
-      this.jobs=data;
+    console.log(this.totalJobs)
 
-    }
-);
-}
-  getJobs(){
+  }
+  postJob(body:{}){
+    console.log(body)
+    return this._http.post('/api/jobs',body, httpOptions)
+    
+    .catch(err => {
+      console.log(err)
+      throw Error;
+    })
+   
+  }
+  getTots() {
+    this.getJobs().subscribe(
+      data => {
+        this.jobs = data;
+
+      }
+    );
+  }
+
+
+  getJobs(): Observable<IJob[]> {
     // this.posts = this.jobsCollectionRef.valueChanges();
     // return (this.posts)
-    return this._http.get(this.jobsUrl)
+    return this._http.get('/api/jobs')
+      .map((resp: Response) => {
+        return resp;
+      })
+      .catch(this.handleError);
+  }
+  deleteJob(jobId:string):Observable<any>{
+    return this._http.delete('/api/jobs/'+jobId);
+  }
+  getJob(jobId:string):Observable<IJob>{
+
+    return this._http.get('/api/jobs/'+jobId)
     .map((resp: Response) => {
-      return resp.json();
+      return resp;
     })
     .catch(this.handleError);
-  }
-  getBooks(offset = 2) {
-    // return this._http.get(this.booksUrl)
-    //   .map((resp: Response) => resp.json())
-    //   .catch(this.handleError);
-
   }
 
   handleError(error: any) {
@@ -71,12 +92,14 @@ getTots(){
     console.error(errMsg); // log to console instead
     return Observable.throw(errMsg);
   }
-  searchByProvince(searchPram: string) {
+  search(searchPram: string) {
 
 
-    console.log('lowercase search:' + searchPram)
-
-
+    return this._http.get('/api/search/'+searchPram)
+    .map((resp: Response) => {
+      return resp;
+    })
+    .catch(this.handleError);
     // this.jobsCollectionRef = this.afs.collection<IJob>('jobss', ref => {
     //   // Compose a query using multiple .where() methods
     //   return ref
@@ -122,16 +145,16 @@ getTots(){
     console.log('lowercase search:' + searchPram)
 
 
-  
+
   }
 
   getPost(postId) {
-   
+
   }
 
   ngOnInit() {
 
-  
+
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     //  .map(actions => {

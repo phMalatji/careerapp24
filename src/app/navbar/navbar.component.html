@@ -6,10 +6,10 @@
 
   <div fxFlex fxLayoutAlign="end start">
        
-          <div *ngIf="!userService.isLogged()">
+          <div *ngIf="!userService.loggedIn()">
               <button mat-button (click)="login()">Login</button>
           </div>
-          <div *ngIf="userService.isLogged()">
+          <div *ngIf="userService.loggedIn()">
               <button mat-button (click)="logout()">Logout</button>
           </div>
      
@@ -29,11 +29,11 @@
   <nav mat-tab-nav-bar>
    
 
-    <span *ngIf="userService.isLogged()">
+    <span *ngIf="userService.loggedIn()">
         <a mat-tab-link routerLink="/home">
           Jobs 
         </a>
-      <a mat-tab-link routerLink="/profile">
+      <a mat-tab-link [routerLink]="['/profile', uId]">
         My Profile
       </a>
       <a mat-tab-link routerLink="/add">

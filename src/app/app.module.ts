@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -34,6 +35,11 @@ import { PagerService } from './shared/pager.service';
 import { PagerComponent } from './pager/pager.component';
 import { JobComponent } from './job/job.component';
 import { SignupComponent } from './signup/signup.component';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DataInterceptor } from './shared/data.interceptor';
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import { SignupemployerComponent } from './signupemployer/signupemployer.component';
 declare let jQuery: Object;
 
 @NgModule({
@@ -54,22 +60,31 @@ declare let jQuery: Object;
     LoginComponent,
     PagerComponent,
     JobComponent,
-    SignupComponent
+    SignupComponent,
+    SignupemployerComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
     HttpModule,
+    CurrencyMaskModule,
     HttpClientModule,
     RoutingRoutingModule,
-
+    
    ToastrModule.forRoot(),
   //  AngularFireAuthModule,
     //AngularFireModule.initializeApp(environment.firebase),
    // AngularFirestoreModule.enablePersistence(),
     NgbModule.forRoot()
   ],
-  providers: [ AuthguardGuard, JobsService, UsersService,MatSnackBar, PagerService],
+  providers: [
+     AuthguardGuard, JobsService, UsersService,MatSnackBar, PagerService,
+     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DataInterceptor,
+      multi: true
+    }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

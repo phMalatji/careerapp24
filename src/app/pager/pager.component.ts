@@ -14,11 +14,11 @@ pageObj={};
   constructor() { }
 
   ngOnInit() {
-    console.log(this.totalPages)
+   // console.log(this.totalPages)
   }
 
   next(){
-    console.log('next'+this.page+ ' '+this.totalPages);
+    //console.log('next'+this.page+ ' '+this.totalPages);
    this.page=this.page+1;
     let act:string;
     this.changePage.emit({
@@ -28,7 +28,7 @@ pageObj={};
     });
   }
   prev(){
-    console.log('prev')
+   // console.log('prev')
     this.page=this.page-1;
     this.changePage.emit({
       page:this.page - 1,

@@ -17,7 +17,19 @@ export class AuthguardGuard implements CanActivate {
 
 
   canActivate():boolean{
-   return this.userServe.isLogged();
+    if(this.userServe.loggedIn()) {
+      return true;
+    } else {
+      this.router.navigateByUrl('/search');
+      return false;
+    }
+   
+  //  if(this.userServe.isLogged()){
+  //   return true;
+  // }
+  // else{
+  //   this.router.navigate(['/search']);
+  // }
     // return this.authService.user$
     //   .map(user => {
     //       if(user && user.uid){

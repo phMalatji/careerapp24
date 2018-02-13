@@ -13,7 +13,7 @@ import { IUser } from '../shared/AppInterfaces';
 export class NavbarComponent implements OnInit {
   collapsed = true;
   user:IUser;
-
+uId:string='00';
 
   //@ViewChild('sidenav') public sideNav:MatDrawer;
 

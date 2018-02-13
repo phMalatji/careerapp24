@@ -1,4 +1,4 @@
-<a (click)="toast()">Toast Me</a>
+<!-- <a (click)="toast()">Toast Me</a> -->
 <div class="search teal-theme">
     <form class="search-form" name="searchForm" [formGroup]="searchForm" (ngSubmit)="directSearch(searchForm.value)" autocomplete="off"
         novalidate>
@@ -29,27 +29,28 @@
     </form>
 </div>
 
-<div class="container">
-    <div class="content choose-div" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-between center"  fxFlexFill>
+<div class="container" (scroll)="scrollFunc($evt)">
+    <div class="content choose-div mt-2" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-between center"  fxFlexFill>
 
-        <div fxFlex="50" fxFlexOrder.xs="1" fxLayoutAlign="center" class="country-div">
-            <div>
-                Choose Country
-            </div>
+        <div fxFlex="50" fxFlexOrder.xs="1" fxLayoutAlign="left" class="country-div">
+            <div class="row">  Choose Country</div>
+              
+         <div class="row">
+                <img [src]="countrySearch" width="280px" mat-button [matMenuTriggerFor]="countryMenu" alt="Country Search">
 
-            <img [src]="countrySearch" width="280px" mat-button [matMenuTriggerFor]="countryMenu" alt="Country Search">
-
-            <mat-menu #countryMenu="matMenu" class="countryMenu">
-                <div *ngFor="let prov of provinces">
-                    <button mat-menu-item (click)="searchProv(prov)">{{prov}}</button>
-
-                </div>
-
-            </mat-menu>
+                <mat-menu #countryMenu="matMenu" class="countryMenu">
+                    <div *ngFor="let prov of provinces">
+                        <button mat-menu-item (click)="searchProv(prov)">{{prov}}</button>
+    
+                    </div>
+    
+                </mat-menu>
+         </div>
+           
 
         </div>
 
-        <div fxFlex="50" fxFlexOrder.xs="2" fxLayoutAlign="center" class="sec2">
+        <div fxFlex="50" fxFlexOrder.xs="2" fxLayoutAlign="right" class="sec2">
             <div>
                 Choose an Industry
             </div>
@@ -66,23 +67,16 @@
         </div>
     </div>
 
-<div class="row mb100">
-    <div class="col-12 text-center">
-            <button class="btn btn-secondary">Sign Up</button>
-    </div>
-   
-</div>
    
 </div>
 
 <app-a-modal>
-    <div class="row">
-        <ul *ngFor="let searchPost of sp | async">
-            <li>
-                {{searchPost.title}}
-            </li>
-        </ul>
+ 
+        <div *ngFor="let sp of pagerJobs">
+           
+                <button class="btn btn-primary ml-2 mt-2" (click)="routeToJob(sp._id)"> {{sp.title}} </button>
+          
+        </div>
 
 
-    </div>
 </app-a-modal>

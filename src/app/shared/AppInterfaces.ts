@@ -1,16 +1,17 @@
 export interface IJob {
+    _id?:string,
     title:string,
-    description:string,
+    desc:string,
+    remun:number,
+    company:string,
+    industry:string,
     province:string,
     skills:[{
         id:number,
         name:string
     }],
     datePosted:number,
-    dateClosing:number,
-    remun:number,
-  
-    sector:string
+    dateClosing:number
 }
 export interface IBook {
 title:string,
@@ -31,11 +32,9 @@ read:boolean
   }
 
   export interface IUser {
-      email:string,
-      password:string,
-      name:string,
-      cellNo:number,
-      idNo:number,
-      currentLocation:string,
-      userType?:string
+      _id?:string,
+      email?:string,
+      password?:string,
+      name?:string,
+      surname?:string
   }
